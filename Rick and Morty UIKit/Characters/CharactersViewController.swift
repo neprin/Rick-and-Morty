@@ -41,7 +41,7 @@ class CharactersViewController: UICollectionViewController {
     
     //MARK: - Setup UI Elements
     
-    private func setupCollectionView() {
+    func setupCollectionView() {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
     }
     
