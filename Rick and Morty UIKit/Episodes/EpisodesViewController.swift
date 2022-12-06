@@ -22,7 +22,4 @@ class EpisodesViewController: UICollectionViewController {
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
     }
-    
-    
-    
 }
