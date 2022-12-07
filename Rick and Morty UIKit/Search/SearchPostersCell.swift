@@ -81,5 +81,4 @@ class SearchPostersCell: UICollectionViewCell {
         checkmark.trailingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: -10).isActive = true
         checkmark.bottomAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: -10).isActive = true
     }
-    
 }

@@ -66,7 +66,7 @@ class SearchViewController: UICollectionViewController {
             let tabbar = self.tabBarController as! MainTabBarController
             let navVC = tabbar.viewControllers?[3] as! UINavigationController
             let favouritesVC = navVC.topViewController as! FavouritesViewController
-    
+            
             favouritesVC.posters.append(contentsOf: selectedPosters ?? [])
             favouritesVC.collectionView.reloadData()
             self.refresh()
@@ -168,14 +168,13 @@ extension SearchViewController: UISearchBarDelegate {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.networkDataFetcher.fetchCharacters(searchTerm: searchText, completion: { [weak self] (searchResults) in
-                //                searchResults?.results.map({ poster in
-                //                    print(poster.image)
-                //                })
+                searchResults?.results.map({ poster in
+                    print(poster.image)
+                })
                 guard let fetchedPhotos = searchResults else { return }
                 self?.posters = fetchedPhotos.results
                 self?.collectionView.reloadData()
                 self?.refresh()
-                //                self?.spinner.stopAnimating()
             })
         })
     }
