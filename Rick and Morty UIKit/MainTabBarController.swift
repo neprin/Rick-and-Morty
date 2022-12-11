@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
         
         // делаем в нижнем TabBar: characters, episodes, search и favourites
         let charactersVC = CharactersViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        let episodesVC = EpisodesViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let episodesVC = EpisodesViewController()
         let searchVC = SearchViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let favouritesVC = FavouritesViewController(collectionViewLayout: UICollectionViewFlowLayout())
         

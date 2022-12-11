@@ -27,6 +27,12 @@
 		A38E890B293CB4B900E9F95E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E890A293CB4B900E9F95E /* SearchViewController.swift */; };
 		A38E890E293CB4EA00E9F95E /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E890D293CB4EA00E9F95E /* FavouritesViewController.swift */; };
 		A39DE72D293FAF42000749AF /* FavouritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39DE72C293FAF42000749AF /* FavouritesCell.swift */; };
+		A3C2723D294534D700FB6B3D /* Episodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2723C294534D700FB6B3D /* Episodes.swift */; };
+		A3C27240294536D100FB6B3D /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = A3C2723F294536D100FB6B3D /* Resolver */; };
+		A3C272422945372300FB6B3D /* EpisodesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C272412945372300FB6B3D /* EpisodesCell.swift */; };
+		A3C2724429453B8F00FB6B3D /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2724329453B8F00FB6B3D /* NetworkProtocols.swift */; };
+		A3C2724629453BD900FB6B3D /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2724529453BD900FB6B3D /* Requests.swift */; };
+		A3EEF61F294609DA009E77C2 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EEF61E294609DA009E77C2 /* ApiError.swift */; };
 		B454683F0BEB34CE25F23294 /* Pods_Rick_and_Morty_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E585572C4503CD4D50341533 /* Pods_Rick_and_Morty_UIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +60,11 @@
 		A38E890A293CB4B900E9F95E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A38E890D293CB4EA00E9F95E /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		A39DE72C293FAF42000749AF /* FavouritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesCell.swift; sourceTree = "<group>"; };
+		A3C2723C294534D700FB6B3D /* Episodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episodes.swift; sourceTree = "<group>"; };
+		A3C272412945372300FB6B3D /* EpisodesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesCell.swift; sourceTree = "<group>"; };
+		A3C2724329453B8F00FB6B3D /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
+		A3C2724529453BD900FB6B3D /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
+		A3EEF61E294609DA009E77C2 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		E585572C4503CD4D50341533 /* Pods_Rick_and_Morty_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rick_and_Morty_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -62,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C27240294536D100FB6B3D /* Resolver in Frameworks */,
 				A30295C1293F8F7B00A35AEF /* SDWebImage in Frameworks */,
 				B454683F0BEB34CE25F23294 /* Pods_Rick_and_Morty_UIKit.framework in Frameworks */,
 			);
@@ -82,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				A3654197293D0B710078C280 /* SearchDataModel.swift */,
+				A3C2723C294534D700FB6B3D /* Episodes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				A38E88FD293CB3C000E9F95E /* NetworkService.swift */,
+				A3EEF61E294609DA009E77C2 /* ApiError.swift */,
+				A3C2724529453BD900FB6B3D /* Requests.swift */,
+				A3C2724329453B8F00FB6B3D /* NetworkProtocols.swift */,
 				A3654195293CEE510078C280 /* SearchCharacter.swift */,
 				A38E8900293CB3D500E9F95E /* NetworkDataFetcher.swift */,
 				A3654199293D0B7F0078C280 /* Models */,
@@ -149,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				A38E8907293CB46900E9F95E /* EpisodesViewController.swift */,
+				A3C272412945372300FB6B3D /* EpisodesCell.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -200,6 +217,7 @@
 			name = "Rick and Morty UIKit";
 			packageProductDependencies = (
 				A30295C0293F8F7B00A35AEF /* SDWebImage */,
+				A3C2723F294536D100FB6B3D /* Resolver */,
 			);
 			productName = "Rick and Morty UIKit";
 			productReference = A38E88E1293CAC8F00E9F95E /* Rick and Morty UIKit.app */;
@@ -231,6 +249,7 @@
 			mainGroup = A38E88D8293CAC8F00E9F95E;
 			packageReferences = (
 				A30295BF293F8F7B00A35AEF /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				A3C2723E294536D100FB6B3D /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = A38E88E2293CAC8F00E9F95E /* Products */;
 			projectDirPath = "";
@@ -304,6 +323,7 @@
 				A38E890E293CB4EA00E9F95E /* FavouritesViewController.swift in Sources */,
 				A38E8908293CB46900E9F95E /* EpisodesViewController.swift in Sources */,
 				A30295BE293F72C100A35AEF /* SearchPostersCell.swift in Sources */,
+				A3C2723D294534D700FB6B3D /* Episodes.swift in Sources */,
 				A38E890B293CB4B900E9F95E /* SearchViewController.swift in Sources */,
 				A38E8903293CB42100E9F95E /* CharactersViewController.swift in Sources */,
 				A38E8901293CB3D500E9F95E /* NetworkDataFetcher.swift in Sources */,
@@ -313,10 +333,14 @@
 				A3654198293D0B710078C280 /* SearchDataModel.swift in Sources */,
 				A38E88FC293CB3A400E9F95E /* MainTabBarController.swift in Sources */,
 				A38E88E5293CAC8F00E9F95E /* AppDelegate.swift in Sources */,
+				A3C2724629453BD900FB6B3D /* Requests.swift in Sources */,
+				A3EEF61F294609DA009E77C2 /* ApiError.swift in Sources */,
 				A38E88FE293CB3C000E9F95E /* NetworkService.swift in Sources */,
 				A38E8906293CB44500E9F95E /* PostersCell.swift in Sources */,
+				A3C2724429453B8F00FB6B3D /* NetworkProtocols.swift in Sources */,
 				A3654196293CEE510078C280 /* SearchCharacter.swift in Sources */,
 				A38E88E7293CAC8F00E9F95E /* SceneDelegate.swift in Sources */,
+				A3C272422945372300FB6B3D /* EpisodesCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +572,14 @@
 				kind = branch;
 			};
 		};
+		A3C2723E294536D100FB6B3D /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -555,6 +587,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A30295BF293F8F7B00A35AEF /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		A3C2723F294536D100FB6B3D /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3C2723E294536D100FB6B3D /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 /* End XCSwiftPackageProductDependency section */
 

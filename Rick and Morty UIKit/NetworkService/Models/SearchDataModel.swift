@@ -21,5 +21,4 @@ struct Result: Codable {
     let episode: [String]
     let url: String
     let created: String
-    
 }
