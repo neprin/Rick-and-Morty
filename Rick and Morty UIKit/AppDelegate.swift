@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Resolver
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        registerAllServices()
         return true
     }
 
@@ -78,3 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: Resolving {
+    private func registerAllServices(){
+        resolver.register { EpisodesCell() }
+        //resolver.register { CharactersViewModel() }
+        resolver.register { NetworkService() }
+    }
+}

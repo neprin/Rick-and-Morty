@@ -13,7 +13,6 @@ class EpisodesCell {
     private var isLoadingPage = false
     
     let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
-    
     let episodesSubject = CurrentValueSubject<[EpisodeResult], Never>([])
     var currentName = ""
     var currentPage = 1

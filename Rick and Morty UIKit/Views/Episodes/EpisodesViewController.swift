@@ -11,10 +11,12 @@ import Resolver
 
 class EpisodesViewController: UIViewController {
     
+    @UsesAutoLayout
     private var tableView = UITableView(frame: .zero, style: .insetGrouped)
+    
     private var dataSource: UITableViewDiffableDataSource<Section, EpisodeResult>!
     private var cancellables = Set<AnyCancellable>()
-    var safeArea: UILayoutGuide!
+//    var safeArea: UILayoutGuide!
     @LazyInjected private var episodesCell: EpisodesCell
 
     
@@ -22,6 +24,12 @@ class EpisodesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupNavigationBar()
+        setupTableView()
+        setupDataSource()
+        setViewModelListeners()
+        Task {
+            await episodesCell.getEpisodes()
+        }
     }
     
     // настраваем navigation bar
@@ -49,7 +57,7 @@ extension EpisodesViewController: UITableViewDelegate {
         case main
     }
     
-    private func configureTableView(){
+    private func setupTableView(){
         tableView.delegate = self
         tableView.allowsSelection = false
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
@@ -58,7 +66,7 @@ extension EpisodesViewController: UITableViewDelegate {
     }
     
     // настраиваем как будет отображаться одна ячейка Episode
-    private func configureDataSource(){
+    private func setupDataSource(){
         dataSource = UITableViewDiffableDataSource<Section, EpisodeResult>(tableView: tableView) {
             (tableView, indexPath, episodeModel) -> UITableViewCell? in
             let cell = UITableViewCell()
@@ -103,63 +111,3 @@ extension UIView {
         ]
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import UIKit
-//
-//class EpisodesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-//
-//    private let myArray: NSArray = ["First","Second","Third"]
-//    private var myTableView: UITableView!
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-//        let displayWidth: CGFloat = self.view.frame.width
-//        let displayHeight: CGFloat = self.view.frame.height
-//
-//        myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-//        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-//        myTableView.dataSource = self
-//        myTableView.delegate = self
-//        self.view.addSubview(myTableView)
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("Num: \(indexPath.row)")
-//        print("Value: \(myArray[indexPath.row])")
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return myArray.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-//        cell.textLabel!.text = "\(myArray[indexPath.row])"
-//        return cell
-//    }
-//}

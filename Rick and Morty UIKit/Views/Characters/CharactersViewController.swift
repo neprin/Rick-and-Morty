@@ -26,7 +26,7 @@ class CharactersViewController: UICollectionViewController {
         collectionView.backgroundColor = .systemBackground
         setupCollectionView()
         setupNavigationBar()
-        setupSearchBar()
+        //setupSearchBar()
     }
     
     //MARK: - Navigation Items (Buttons)
@@ -55,13 +55,13 @@ class CharactersViewController: UICollectionViewController {
     }
     
     // настраивакм search bar
-    func setupSearchBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        // чтобы сработал extension delegate
-        searchController.searchBar.delegate = self
-    }
+//    func setupSearchBar() {
+//        let searchController = UISearchController(searchResultsController: nil)
+//        navigationItem.searchController = searchController
+//        navigationItem.hidesSearchBarWhenScrolling = false
+//        // чтобы сработал extension delegate
+//        searchController.searchBar.delegate = self
+//    }
     
     //MARK: - UICollectionViewDataSource, UICollectionViewDelegate
     
@@ -77,10 +77,10 @@ class CharactersViewController: UICollectionViewController {
     }
 }
 
-//MARK: - UISearchBarDelegate Extension
-
-extension CharactersViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-    }
-}
+////MARK: - UISearchBarDelegate Extension
+//
+//extension CharactersViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        print(searchText)
+//    }
+//}

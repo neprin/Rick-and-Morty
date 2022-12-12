@@ -12,6 +12,7 @@
 		A3596F1129476B6B00B9C876 /* CharacterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3596F1029476B6B00B9C876 /* CharacterDataModel.swift */; };
 		A3596F1529477B8A00B9C876 /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3596F1429477B8A00B9C876 /* GeneralResponse.swift */; };
 		A3596F1729478E6500B9C876 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3596F1629478E6400B9C876 /* Schema.swift */; };
+		A3596F192947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3596F182947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift */; };
 		A3654196293CEE510078C280 /* SearchCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3654195293CEE510078C280 /* SearchCharacter.swift */; };
 		A3654198293D0B710078C280 /* SearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3654197293D0B710078C280 /* SearchDataModel.swift */; };
 		A38E88E5293CAC8F00E9F95E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38E88E4293CAC8F00E9F95E /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		A3596F1029476B6B00B9C876 /* CharacterDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDataModel.swift; sourceTree = "<group>"; };
 		A3596F1429477B8A00B9C876 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		A3596F1629478E6400B9C876 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
+		A3596F182947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutPropertyWrapper.swift; sourceTree = "<group>"; };
 		A3654195293CEE510078C280 /* SearchCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCharacter.swift; sourceTree = "<group>"; };
 		A3654197293D0B710078C280 /* SearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataModel.swift; sourceTree = "<group>"; };
 		A38E88E1293CAC8F00E9F95E /* Rick and Morty UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick and Morty UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				A38E8909293CB47200E9F95E /* Episodes */,
 				A38E890C293CB4BE00E9F95E /* Search */,
 				A38E890F293CB4EF00E9F95E /* Favourites */,
+				A3596F182947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				A3654199293D0B7F0078C280 /* DataModels */,
-				A38E88FF293CB3C600E9F95E /* NetworkService */,
+				A38E88FF293CB3C600E9F95E /* Network */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -157,7 +160,7 @@
 			path = "Rick and Morty UIKit";
 			sourceTree = "<group>";
 		};
-		A38E88FF293CB3C600E9F95E /* NetworkService */ = {
+		A38E88FF293CB3C600E9F95E /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				A38E88FD293CB3C000E9F95E /* NetworkService.swift */,
@@ -168,7 +171,7 @@
 				A3654195293CEE510078C280 /* SearchCharacter.swift */,
 				A38E8900293CB3D500E9F95E /* SearchDataFetcher.swift */,
 			);
-			path = NetworkService;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A38E8904293CB42800E9F95E /* Characters */ = {
@@ -353,6 +356,7 @@
 				A38E88E5293CAC8F00E9F95E /* AppDelegate.swift in Sources */,
 				A3C2724629453BD900FB6B3D /* Requests.swift in Sources */,
 				A3EEF61F294609DA009E77C2 /* ApiError.swift in Sources */,
+				A3596F192947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				A3596F1529477B8A00B9C876 /* GeneralResponse.swift in Sources */,
 				A38E88FE293CB3C000E9F95E /* NetworkService.swift in Sources */,
 				A38E8906293CB44500E9F95E /* PostersCell.swift in Sources */,
