@@ -16,7 +16,7 @@ protocol NetworkServiceProtocol: AnyObject {
 protocol NetworkRequestProtocol {
     associatedtype ResponseType: Decodable
     
-    var endpoint: Endpoint { get }
+    var endpoint: Schema { get }
     var method: HTTPMethod { get }
 }
 

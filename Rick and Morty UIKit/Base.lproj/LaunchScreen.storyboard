@@ -16,13 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rick-and-morty" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-fZ-qAb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rick-and-morty" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-fZ-qAb">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9Ny-fZ-qAb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6vY-Hk-rcE"/>
+                            <constraint firstItem="9Ny-fZ-qAb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="7x5-EV-W1R"/>
+                            <constraint firstItem="9Ny-fZ-qAb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kiP-8h-DyK"/>
+                            <constraint firstItem="9Ny-fZ-qAb" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-59" id="smH-3m-AgR"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

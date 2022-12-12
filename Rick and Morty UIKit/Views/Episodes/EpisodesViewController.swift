@@ -12,11 +12,12 @@ import Resolver
 class EpisodesViewController: UIViewController {
     
     private var tableView = UITableView(frame: .zero, style: .insetGrouped)
-    private var dataSource: UITableViewDiffableDataSource<Section, Episode>!
+    private var dataSource: UITableViewDiffableDataSource<Section, EpisodeResult>!
     private var cancellables = Set<AnyCancellable>()
     var safeArea: UILayoutGuide!
     @LazyInjected private var episodesCell: EpisodesCell
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -34,19 +35,15 @@ class EpisodesViewController: UIViewController {
     private func setViewModelListeners() {
                 Publishers.CombineLatest(episodesCell.isFirstLoadingPageSubject, episodesCell.episodesSubject).sink { [weak self] (isLoading, episodes) in
                     DispatchQueue.main.async {
-                        if isLoading {
-                        } else {
                             self?.createSnapshot(from: episodes)
-                            if episodes.isEmpty {
-                            } else {}
-                        }
+                            if episodes.isEmpty { return }
                     }
                 }
                 .store(in: &cancellables)
     }
 }
 
-// MARK: - Table View Data Source Configurations
+// MARK: - Table View Configurations
 extension EpisodesViewController: UITableViewDelegate {
     fileprivate enum Section {
         case main
@@ -60,17 +57,19 @@ extension EpisodesViewController: UITableViewDelegate {
         NSLayoutConstraint.activate(tableView.constraintsForAnchoringTo(boundsOf: view))
     }
     
+    // настраиваем как будет отображаться одна ячейка Episode
     private func configureDataSource(){
-        dataSource = UITableViewDiffableDataSource<Section, Episode>(tableView: tableView) {(tableView, indexPath, episodeModel) -> UITableViewCell? in
+        dataSource = UITableViewDiffableDataSource<Section, EpisodeResult>(tableView: tableView) {
+            (tableView, indexPath, episodeModel) -> UITableViewCell? in
             let cell = UITableViewCell()
             cell.textLabel?.numberOfLines = 2
-            cell.textLabel?.text = "\(episodeModel.episodeCode) - \(episodeModel.name)"
+            cell.textLabel?.text = "\(episodeModel.episode) - \(episodeModel.name)"
             return cell
         }
     }
     
-    private func createSnapshot(from addedEpisodes: [Episode]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Episode>()
+    private func createSnapshot(from addedEpisodes: [EpisodeResult]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, EpisodeResult>()
         snapshot.appendSections([.main])
         snapshot.appendItems(addedEpisodes)
         dataSource.apply(snapshot, animatingDifferences: true)

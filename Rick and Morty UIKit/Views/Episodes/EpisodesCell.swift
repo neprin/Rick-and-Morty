@@ -14,8 +14,8 @@ class EpisodesCell {
     
     let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
     
-    let episodesSubject = CurrentValueSubject<[Episode], Never>([])
-    var currentSearchQuery = ""
+    let episodesSubject = CurrentValueSubject<[EpisodeResult], Never>([])
+    var currentName = ""
     var currentPage = 1
     var canLoadMorePages = true
 
@@ -26,12 +26,12 @@ class EpisodesCell {
             return
         }
         isLoadingPage = true
-        let request = EpisodesRequest(name: currentSearchQuery, page: currentPage)
+        let request = EpisodesRequest(name: currentName, page: currentPage)
         do {
             let episodeResponseModel = try await networkService.fetch(request)
             isLoadingPage = false
             episodesSubject.value.append(contentsOf: episodeResponseModel.results)
-            if episodeResponseModel.pageInfo.pageCount == currentPage {
+            if episodeResponseModel.pageInfo.pages == currentPage {
                 canLoadMorePages = false
                 return
             }

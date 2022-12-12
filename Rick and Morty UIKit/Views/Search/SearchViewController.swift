@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UICollectionViewController {
     
-    var networkDataFetcher = NetworkDataFetcher()
+    var networkDataFetcher = SearchDataFetcher()
     private var posters = [Result]() // массив в который будкм получать все постеры Rick&Morty
     private var timer: Timer? // делаем задержку в 0.5 сек
     private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -169,7 +169,7 @@ extension SearchViewController: UISearchBarDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.networkDataFetcher.fetchCharacters(searchTerm: searchText, completion: { [weak self] (searchResults) in
                 searchResults?.results.map({ poster in
-                    print(poster.image)
+                    print(poster.image, poster.url)
                 })
                 guard let fetchedPhotos = searchResults else { return }
                 self?.posters = fetchedPhotos.results

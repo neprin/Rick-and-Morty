@@ -1,5 +1,5 @@
 //
-//  NetworkDataFetcher.swift
+//  SearchDataFetcher.swift
 //  Rick and Morty UIKit
 //
 //  Created by Pavel Neprin on 12/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkDataFetcher {
+class SearchDataFetcher {
     
     var searchCharacter = SearchCharacter()
     

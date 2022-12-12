@@ -60,8 +60,8 @@ class FavouritesViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavouritesCell.reuseId, for: indexPath) as! FavouritesCell
-        let unsplashPhoto = posters[indexPath.item]
-        cell.postersImage = unsplashPhoto
+        let posterPhoto = posters[indexPath.item]
+        cell.postersImage = posterPhoto
         return cell
     }
 }
