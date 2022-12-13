@@ -9,6 +9,9 @@ import UIKit
 
 class CharactersViewController: UICollectionViewController {
     
+    private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    private let itemsPerRow: CGFloat = 2
+    
     // две кнопки для функционала в tab bar
     private lazy var addBarButtonItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButton))
