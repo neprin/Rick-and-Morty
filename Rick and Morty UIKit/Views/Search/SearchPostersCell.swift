@@ -73,7 +73,6 @@ class SearchPostersCell: UICollectionViewCell {
         posterImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         posterImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         posterImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        
     }
     
     private func setupCheckmarkView() {

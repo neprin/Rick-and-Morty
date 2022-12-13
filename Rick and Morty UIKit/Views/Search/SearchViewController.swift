@@ -77,7 +77,6 @@ class SearchViewController: UICollectionViewController {
         alertController.addAction(add)
         alertController.addAction(cancel)
         present(alertController, animated: true)
-        
     }
     
     @objc private func shareBarButton(sender: UIBarButtonItem) {
@@ -143,7 +142,6 @@ class SearchViewController: UICollectionViewController {
         let cell = collectionView.cellForItem(at: indexPath) as! SearchPostersCell
         guard let image = cell.posterImageView.image else { return }
         selectedPosters.append(image)
-        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -156,19 +154,17 @@ class SearchViewController: UICollectionViewController {
     }
 }
 
-
-
 //MARK: - UISearchBarDelegate Extension
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
         
-        // weak self обязательно! - чтобы не было утечки памяти
+        // weak self обязательно! (чтобы не было утечки памяти)
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             self.networkDataFetcher.fetchCharacters(searchTerm: searchText, completion: { [weak self] (searchResults) in
-                searchResults?.results.map({ poster in
+                searchResults?.results.map({ poster in // чисто для меня вывод в консоль, удолить!
                     print(poster.image, poster.url)
                 })
                 guard let fetchedPhotos = searchResults else { return }

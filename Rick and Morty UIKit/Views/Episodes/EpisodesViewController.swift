@@ -26,7 +26,7 @@ class EpisodesViewController: UIViewController {
         setupNavigationBar()
         setupTableView()
         setupDataSource()
-        setViewModelListeners()
+        setupViewModelListeners()
         Task {
             await episodesCell.getEpisodes()
         }
@@ -40,7 +40,7 @@ class EpisodesViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
     }
     
-    private func setViewModelListeners() {
+    private func setupViewModelListeners() {
                 Publishers.CombineLatest(episodesCell.isFirstLoadingPageSubject, episodesCell.episodesSubject).sink { [weak self] (isLoading, episodes) in
                     DispatchQueue.main.async {
                             self?.createSnapshot(from: episodes)

@@ -31,7 +31,7 @@ extension Schema {
     }
 }
 
-// MARK: - Endpoints
+// MARK: - Adding Endpoints
 extension Schema {
     
     static func getEpisodes(for name: String, page: Int) -> Self {
