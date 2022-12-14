@@ -6,84 +6,139 @@
 //
 
 import UIKit
+import Combine
+import Resolver
 
-class CharactersViewController: UICollectionViewController {
+class CharactersViewController: UIViewController {
+    //UI Variable
+    private var collectionView: UICollectionView!
+    private let searchController = UISearchController()
+    //Variables
+    private var dataSource: UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>!
+    private var cancellables = Set<AnyCancellable>()
     
-    private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-    private let itemsPerRow: CGFloat = 2
+    private var isLoadingPage = false
     
-    // две кнопки для функционала в tab bar
-    private lazy var addBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButton))
-    }()
-    
-    private lazy var shareBarButtonItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareBarButton))
-    }()
-    
-    //MARK: - viewDidLoad()
+    let charactersSubject = CurrentValueSubject<[RickAndMortyCharacter], Never>([])
+    let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
+    var currentSearchQuery = ""
+    var currentStatus = ""
+    var currentGender = ""
+    var currentPage = 1
+    var canLoadMorePages = true
+    @LazyInjected private var networkService: NetworkService
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.backgroundColor = .systemBackground
-        setupCollectionView()
         setupNavigationBar()
-        //setupSearchBar()
+        setupCollectionView()
+        configureDataSource()
+        setViewModelListeners()
+        Task {
+            await getCharacters()
+        }
     }
     
-    //MARK: - Navigation Items (Buttons)
-    
-    @objc private func addBarButton() {
-        print(#function)
+    func getCharacters() async {
+        guard !isLoadingPage && canLoadMorePages else {
+            return
+        }
+        isLoadingPage = true
+        let request = CharactersRequest(page: currentPage)
+        do {
+            let characterResponseModel = try await networkService.fetch(request)
+            isLoadingPage = false
+            isFirstLoadingPageSubject.value = false
+            if currentPage == 1 {
+                charactersSubject.value.removeAll()
+            }
+            charactersSubject.value.append(contentsOf: characterResponseModel.results)
+            if characterResponseModel.pageInfo.pages == currentPage {
+                canLoadMorePages = false
+                return
+            }
+            currentPage += 1
+        } catch {
+            if let apiError = error as? APIError {
+                print(apiError.errorMessage)
+            }
+            print(error.localizedDescription)
+        }
     }
     
-    @objc private func shareBarButton() {
-        print(#function)
-    }
-    
-    //MARK: - Setup UI Elements
-    
-    func setupCollectionView() {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cellID")
-    }
-    
-    // настраваем navigation bar
     private func setupNavigationBar() {
         let titleLabel = UILabel()
-        titleLabel.text = "All characters"
+        title = "All Characters"
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
-        navigationItem.rightBarButtonItems = [shareBarButtonItem, addBarButtonItem]
+    }
+
+    private func setupCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(PostersCell.self, forCellWithReuseIdentifier: PostersCell.reuseIdentifier)
+        view.addSubview(collectionView)
     }
     
-    // настраивакм search bar
-//    func setupSearchBar() {
-//        let searchController = UISearchController(searchResultsController: nil)
-//        navigationItem.searchController = searchController
-//        navigationItem.hidesSearchBarWhenScrolling = false
-//        // чтобы сработал extension delegate
-//        searchController.searchBar.delegate = self
-//    }
-    
-    //MARK: - UICollectionViewDataSource, UICollectionViewDelegate
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+    private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
-    // метод отвечает за настройку конкретной ячейки
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath)
-        cell.backgroundColor = .orange // временно
-        return cell
+    private func setViewModelListeners() {
+        Publishers.CombineLatest(isFirstLoadingPageSubject, charactersSubject).sink { [weak self] (isLoading, characters) in
+            DispatchQueue.main.async {
+                    self?.createSnapshot(from: characters)
+                    if characters.isEmpty {
+                }
+            }
+        }
+        .store(in: &cancellables)
     }
 }
 
-////MARK: - UISearchBarDelegate Extension
-//
-//extension CharactersViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        print(searchText)
-//    }
-//}
+// MARK: - Collection View Data Source Configurations
+extension CharactersViewController: UICollectionViewDelegate {
+    fileprivate enum Section {
+        case main
+    }
+    
+    private func configureDataSource(){
+        dataSource = UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>(collectionView: collectionView) {(collectionView, indexPath, characterModel) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersCell.reuseIdentifier, for: indexPath) as? PostersCell
+            cell?.set(with: characterModel)
+            return cell
+        }
+    }
+    
+    private func createSnapshot(from addedCharacters: [RickAndMortyCharacter]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, RickAndMortyCharacter>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(addedCharacters)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let collectionViewContentSizeHeight = collectionView.contentSize.height
+        let scrollViewHeight = scrollView.frame.size.height
+        
+        if position > (collectionViewContentSizeHeight - scrollViewHeight) {
+            Task {
+                await getCharacters()
+            }
+        }
+    }
+}

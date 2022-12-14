@@ -16,7 +16,6 @@ class EpisodesViewController: UIViewController {
     
     private var dataSource: UITableViewDiffableDataSource<Section, EpisodeResult>!
     private var cancellables = Set<AnyCancellable>()
-//    var safeArea: UILayoutGuide!
     @LazyInjected private var episodesCell: EpisodesCell
 
     
