@@ -77,13 +77,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
 extension AppDelegate: Resolving {
     private func registerAllServices(){
         resolver.register { EpisodesCell() }
-        //resolver.register { CharactersViewModel() }
         resolver.register { NetworkService() }
     }
 }

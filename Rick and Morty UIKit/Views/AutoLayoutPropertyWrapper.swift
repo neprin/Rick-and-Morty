@@ -8,7 +8,7 @@
 import UIKit
 
 @propertyWrapper
-public struct UsesAutoLayout<T: UIView> {
+public struct AutoLayout<T: UIView> {
     public var wrappedValue: T {
         didSet {
             wrappedValue.translatesAutoresizingMaskIntoConstraints = false

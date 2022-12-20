@@ -11,13 +11,13 @@ import Resolver
 
 class EpisodesViewController: UIViewController {
     
-    @UsesAutoLayout
+    @AutoLayout
     private var tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     private var dataSource: UITableViewDiffableDataSource<Section, EpisodeResult>!
     private var cancellables = Set<AnyCancellable>()
     @LazyInjected private var episodesCell: EpisodesCell
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +40,13 @@ class EpisodesViewController: UIViewController {
     }
     
     private func setupViewModelListener() {
-                Publishers.CombineLatest(episodesCell.isFirstLoadingPageSubject, episodesCell.episodesSubject).sink { [weak self] (isLoading, episodes) in
-                    DispatchQueue.main.async {
-                            self?.createSnapshot(from: episodes)
-                            if episodes.isEmpty { return }
-                    }
-                }
-                .store(in: &cancellables)
+        Publishers.CombineLatest(episodesCell.isFirstLoadingPageSubject, episodesCell.episodesSubject).sink { [weak self] (isLoading, episodes) in
+            DispatchQueue.main.async {
+                self?.createSnapshot(from: episodes)
+                if episodes.isEmpty { return }
+            }
+        }
+        .store(in: &cancellables)
     }
 }
 

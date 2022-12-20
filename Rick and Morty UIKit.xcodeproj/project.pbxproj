@@ -148,14 +148,11 @@
 		A38E88E3293CAC8F00E9F95E /* Rick and Morty UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A38E88E4293CAC8F00E9F95E /* AppDelegate.swift */,
-				A38E88E6293CAC8F00E9F95E /* SceneDelegate.swift */,
+				A395F6EF2951C83B00E42E38 /* Application */,
 				A3596F0E2947481900B9C876 /* Views */,
 				A3596F0F2947482500B9C876 /* Network */,
-				A38E88F0293CAC9000E9F95E /* Assets.xcassets */,
-				A38E88F2293CAC9000E9F95E /* LaunchScreen.storyboard */,
-				A38E88F5293CAC9000E9F95E /* Info.plist */,
-				A38E88ED293CAC8F00E9F95E /* Rick_and_Morty_UIKit.xcdatamodeld */,
+				A395F6F02951C8C600E42E38 /* Resourses */,
+				A395F6F12951C90D00E42E38 /* CoreData */,
 			);
 			path = "Rick and Morty UIKit";
 			sourceTree = "<group>";
@@ -208,6 +205,33 @@
 				A39DE72C293FAF42000749AF /* FavouritesCell.swift */,
 			);
 			path = Favourites;
+			sourceTree = "<group>";
+		};
+		A395F6EF2951C83B00E42E38 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A38E88E4293CAC8F00E9F95E /* AppDelegate.swift */,
+				A38E88E6293CAC8F00E9F95E /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A395F6F02951C8C600E42E38 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				A38E88F0293CAC9000E9F95E /* Assets.xcassets */,
+				A38E88F2293CAC9000E9F95E /* LaunchScreen.storyboard */,
+				A38E88F5293CAC9000E9F95E /* Info.plist */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		A395F6F12951C90D00E42E38 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A38E88ED293CAC8F00E9F95E /* Rick_and_Morty_UIKit.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		A8FEA7A7137979F712AD922F /* Pods */ = {
@@ -506,7 +530,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8KHYSRJLW7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Rick and Morty UIKit/Info.plist";
+				INFOPLIST_FILE = "Rick and Morty UIKit/Resourses/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Rick and Morty";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -536,7 +560,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8KHYSRJLW7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Rick and Morty UIKit/Info.plist";
+				INFOPLIST_FILE = "Rick and Morty UIKit/Resourses/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Rick and Morty";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
