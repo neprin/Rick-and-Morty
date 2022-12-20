@@ -5,7 +5,6 @@
 //  Created by Pavel Neprin on 12/12/22.
 //
 
-import Foundation
 import UIKit
 
 struct Schema {
@@ -31,20 +30,25 @@ extension Schema {
     }
 }
 
-// MARK: - Adding Endpoints
+// MARK: - Adding Schema
 extension Schema {
-    
-    static func getEpisodes(for name: String, page: Int) -> Self {
-        Schema(
-            path: "api/episode/",
-            parameter: [URLQueryItem(name: "page", value: String(page)),
-                         URLQueryItem(name: "name", value: name)]
-        )}
     
     static func getCharacters(page: Int) -> Self {
         Schema(
             path: "api/character/",
             parameter: [
-                URLQueryItem(name: "page", value: String(page))]
+                URLQueryItem(name: "page", value: String(page))
+            ]
         )}
+    
+    static func getEpisodes(for name: String, page: Int) -> Self {
+        Schema(
+            path: "api/episode/",
+            parameter: [
+                URLQueryItem(name: "page", value: String(page)),
+                URLQueryItem(name: "name", value: name)
+            ]
+        )}
+    
+
 }

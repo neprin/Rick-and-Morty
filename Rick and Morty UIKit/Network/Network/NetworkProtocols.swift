@@ -5,7 +5,7 @@
 //  Created by Pavel Neprin on 12/11/22.
 //
 
-import Foundation
+import UIKit
 
 protocol NetworkServiceProtocol: AnyObject {
     var customDecoder: JSONDecoder { get }

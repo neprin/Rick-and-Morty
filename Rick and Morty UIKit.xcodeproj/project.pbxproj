@@ -34,7 +34,6 @@
 		A3C272422945372300FB6B3D /* EpisodesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C272412945372300FB6B3D /* EpisodesCell.swift */; };
 		A3C2724429453B8F00FB6B3D /* NetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2724329453B8F00FB6B3D /* NetworkProtocols.swift */; };
 		A3C2724629453BD900FB6B3D /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2724529453BD900FB6B3D /* Requests.swift */; };
-		A3EEF61F294609DA009E77C2 /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EEF61E294609DA009E77C2 /* ApiError.swift */; };
 		B454683F0BEB34CE25F23294 /* Pods_Rick_and_Morty_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E585572C4503CD4D50341533 /* Pods_Rick_and_Morty_UIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +67,6 @@
 		A3C272412945372300FB6B3D /* EpisodesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesCell.swift; sourceTree = "<group>"; };
 		A3C2724329453B8F00FB6B3D /* NetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocols.swift; sourceTree = "<group>"; };
 		A3C2724529453BD900FB6B3D /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
-		A3EEF61E294609DA009E77C2 /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		E585572C4503CD4D50341533 /* Pods_Rick_and_Morty_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rick_and_Morty_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,9 +117,8 @@
 		A3654199293D0B7F0078C280 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				A3596F1429477B8A00B9C876 /* GeneralResponse.swift */,
-				A3C2723C294534D700FB6B3D /* EpisodesDataModel.swift */,
 				A3596F1029476B6B00B9C876 /* CharacterDataModel.swift */,
+				A3C2723C294534D700FB6B3D /* EpisodesDataModel.swift */,
 				A3654197293D0B710078C280 /* SearchDataModel.swift */,
 			);
 			path = DataModels;
@@ -160,10 +157,10 @@
 		A38E88FF293CB3C600E9F95E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A3596F1429477B8A00B9C876 /* GeneralResponse.swift */,
 				A38E88FD293CB3C000E9F95E /* NetworkService.swift */,
 				A3C2724329453B8F00FB6B3D /* NetworkProtocols.swift */,
 				A3596F1629478E6400B9C876 /* Schema.swift */,
-				A3EEF61E294609DA009E77C2 /* ApiError.swift */,
 				A3C2724529453BD900FB6B3D /* Requests.swift */,
 				A3654195293CEE510078C280 /* SearchCharacter.swift */,
 				A38E8900293CB3D500E9F95E /* SearchDataFetcher.swift */,
@@ -379,7 +376,6 @@
 				A38E88FC293CB3A400E9F95E /* MainTabBarController.swift in Sources */,
 				A38E88E5293CAC8F00E9F95E /* AppDelegate.swift in Sources */,
 				A3C2724629453BD900FB6B3D /* Requests.swift in Sources */,
-				A3EEF61F294609DA009E77C2 /* ApiError.swift in Sources */,
 				A3596F192947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift in Sources */,
 				A3596F1529477B8A00B9C876 /* GeneralResponse.swift in Sources */,
 				A38E88FE293CB3C000E9F95E /* NetworkService.swift in Sources */,

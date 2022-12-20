@@ -5,48 +5,40 @@
 //  Created by Pavel Neprin on 12/4/22.
 //
 
-import Foundation
 import UIKit
 
 class NetworkService: NetworkServiceProtocol {
-
+    
     let customDecoder = JSONDecoder()
-    
-    init() {
-        setCustomDecoder()
-    }
-    
+        
     func setCustomDecoder() {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale(identifier: "en_US")
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
         customDecoder.dateDecodingStrategy = .formatted(formatter)
     }
-    
+
+    init() {
+        setCustomDecoder()
+    }
+
     func fetch<T: NetworkRequestProtocol>(_ request: T) async throws -> T.ResponseType {
+        
         var urlRequest = URLRequest(url: request.endpoint.url)
         urlRequest.httpMethod = request.method.rawValue
+        
         let data: T.ResponseType = try await withCheckedThrowingContinuation { [weak self] continuation in
             guard let self = self else { return }
             URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
                     guard let data = data else { return }
                     do {
-                        guard let urlResponse = response as? HTTPURLResponse,
-                              (200...299).contains(urlResponse.statusCode) else {
-                                  let decodedErrorResponse = try self.customDecoder.decode(APIError.self, from: data)
-                                  continuation.resume(throwing: decodedErrorResponse)
-                                  return
-                              }
+                        guard response != nil else { return }
                         let decodedData = try self.customDecoder.decode(T.ResponseType.self, from: data)
                         continuation.resume(returning: decodedData)
                     } catch {
                         continuation.resume(throwing: error)
                     }
-                }
             }
             .resume()
         }

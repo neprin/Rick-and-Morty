@@ -13,15 +13,12 @@ class EpisodesViewController: UIViewController {
     
     @AutoLayout
     private var tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
     private var dataSource: UITableViewDiffableDataSource<Section, EpisodeResult>!
     private var cancellables = Set<AnyCancellable>()
     @LazyInjected private var episodesCell: EpisodesCell
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         setupNavigationBar()
         setupTableView()
         setupDataSource()
@@ -56,7 +53,7 @@ extension EpisodesViewController: UITableViewDelegate {
         case main
     }
     
-    private func setupTableView(){
+    private func setupTableView() {
         tableView.delegate = self
         tableView.allowsSelection = false
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
@@ -65,7 +62,7 @@ extension EpisodesViewController: UITableViewDelegate {
     }
     
     // настраиваем как будет отображаться одна ячейка Episode
-    private func setupDataSource(){
+    private func setupDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, EpisodeResult>(tableView: tableView) {
             (tableView, indexPath, episodeModel) -> UITableViewCell? in
             let cell = UITableViewCell()
@@ -97,16 +94,16 @@ extension EpisodesViewController: UITableViewDelegate {
 
 extension UIView {
     
-    /// Returns a collection of constraints to anchor the bounds of the current view to the given view.
-    ///
-    /// - Parameter view: The view to anchor to.
-    /// - Returns: The layout constraints needed for this constraint.
+    // Returns a collection of constraints to anchor the bounds of the current view to the given view.
+    //
+    // - Parameter view: The view to anchor to.
+    // - Returns: The layout constraints needed for this constraint.
     func constraintsForAnchoringTo(boundsOf view: UIView) -> [NSLayoutConstraint] {
         return [
             topAnchor.constraint(equalTo: view.topAnchor),
             leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor),
-            view.trailingAnchor.constraint(equalTo: trailingAnchor)
+            bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ]
     }
 }

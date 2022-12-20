@@ -4,8 +4,11 @@
 //
 //  Created by Pavel Neprin on 12/12/22.
 //
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let getAllEpisodes = try? newJSONDecoder().decode(GetAllEpisodes.self, from: jsonData)
 
-import Foundation
 import UIKit
 
 struct RickAndMortyCharacter: Decodable, Hashable {
@@ -29,7 +32,7 @@ struct RickAndMortyCharacter: Decodable, Hashable {
     }
 }
 
-// MARK: - CharacterStatus Enum
+// MARK: - CharacterStatus
 extension RickAndMortyCharacter {
     enum CharacterStatus: String, Decodable {
         case alive = "Alive"

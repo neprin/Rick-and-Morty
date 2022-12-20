@@ -37,8 +37,8 @@ class EpisodesCell {
             currentPage += 1
             isFirstLoadingPageSubject.value = false
         } catch {
-            if let apiError = error as? APIError {
-                print(apiError.errorMessage)
+            if error != nil {
+                print(error)
             }
             print(error.localizedDescription)
         }

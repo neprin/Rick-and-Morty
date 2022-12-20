@@ -10,20 +10,14 @@ import Combine
 import Resolver
 
 class CharactersViewController: UIViewController {
-    //UI Variable
+   
     private var collectionView: UICollectionView!
-    private let searchController = UISearchController()
-    //Variables
     private var dataSource: UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>!
     private var cancellables = Set<AnyCancellable>()
-    
     private var isLoadingPage = false
     
     let charactersSubject = CurrentValueSubject<[RickAndMortyCharacter], Never>([])
     let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
-    var currentSearchQuery = ""
-    var currentStatus = ""
-    var currentGender = ""
     var currentPage = 1
     var canLoadMorePages = true
     @LazyInjected private var networkService: NetworkService
@@ -60,8 +54,8 @@ class CharactersViewController: UIViewController {
             }
             currentPage += 1
         } catch {
-            if let apiError = error as? APIError {
-                print(apiError.errorMessage)
+            if error != nil {
+                print(error)
             }
             print(error.localizedDescription)
         }
@@ -69,7 +63,7 @@ class CharactersViewController: UIViewController {
     
     private func setupNavigationBar() {
         let titleLabel = UILabel()
-        title = "All Characters"
+        titleLabel.text = "All Characters"
         titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
     }
@@ -78,7 +72,7 @@ class CharactersViewController: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
-        collectionView.register(PostersCell.self, forCellWithReuseIdentifier: PostersCell.reuseIdentifier)
+        collectionView.register(PostersCell.self, forCellWithReuseIdentifier: PostersCell.reuseId)
         view.addSubview(collectionView)
     }
     
@@ -86,12 +80,12 @@ class CharactersViewController: UIViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(0.5)
+        )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
         let section = NSCollectionLayoutSection(group: group)
-        
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
@@ -116,7 +110,7 @@ extension CharactersViewController: UICollectionViewDelegate {
     
     private func configureDataSource(){
         dataSource = UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>(collectionView: collectionView) {(collectionView, indexPath, characterModel) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersCell.reuseIdentifier, for: indexPath) as? PostersCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostersCell.reuseId, for: indexPath) as? PostersCell
             cell?.set(with: characterModel)
             return cell
         }
@@ -128,7 +122,6 @@ extension CharactersViewController: UICollectionViewDelegate {
         snapshot.appendItems(addedCharacters)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y

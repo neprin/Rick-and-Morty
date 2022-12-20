@@ -10,7 +10,7 @@ import SDWebImage
 
 final class PostersCell: UICollectionViewCell {
  
-    static let reuseIdentifier: String = "PostersCell"
+    static let reuseId: String = "PostersCell"
     
     let posterImageView: UIImageView = {
         let imageView = UIImageView()

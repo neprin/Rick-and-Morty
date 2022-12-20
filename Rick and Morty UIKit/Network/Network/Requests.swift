@@ -5,7 +5,6 @@
 //  Created by Pavel Neprin on 12/11/22.
 //
 
-import Foundation
 import UIKit
 
 class CharactersRequest: NetworkRequestProtocol {
