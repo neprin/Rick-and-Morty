@@ -9,7 +9,7 @@
 //
 //   let getAllEpisodes = try? newJSONDecoder().decode(GetAllEpisodes.self, from: jsonData)
 
-import UIKit
+import Foundation
 
 struct RickAndMortyCharacter: Decodable, Hashable {
     let uuid = UUID()

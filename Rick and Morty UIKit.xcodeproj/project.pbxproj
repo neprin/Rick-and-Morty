@@ -95,23 +95,23 @@
 		A3596F0E2947481900B9C876 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A38E88FB293CB3A400E9F95E /* MainTabBarController.swift */,
 				A38E8904293CB42800E9F95E /* Characters */,
 				A38E8909293CB47200E9F95E /* Episodes */,
 				A38E890C293CB4BE00E9F95E /* Search */,
 				A38E890F293CB4EF00E9F95E /* Favourites */,
+				A38E88FB293CB3A400E9F95E /* MainTabBarController.swift */,
 				A3596F182947A1D100B9C876 /* AutoLayoutPropertyWrapper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A3596F0F2947482500B9C876 /* Network */ = {
+		A3596F0F2947482500B9C876 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A3654199293D0B7F0078C280 /* DataModels */,
 				A38E88FF293CB3C600E9F95E /* Network */,
+				A3654199293D0B7F0078C280 /* DataModels */,
 			);
-			path = Network;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A3654199293D0B7F0078C280 /* DataModels */ = {
@@ -147,7 +147,7 @@
 			children = (
 				A395F6EF2951C83B00E42E38 /* Application */,
 				A3596F0E2947481900B9C876 /* Views */,
-				A3596F0F2947482500B9C876 /* Network */,
+				A3596F0F2947482500B9C876 /* Services */,
 				A395F6F02951C8C600E42E38 /* Resourses */,
 				A395F6F12951C90D00E42E38 /* CoreData */,
 			);

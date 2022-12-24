@@ -79,6 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// чтобы работал resolver
 extension AppDelegate: Resolving {
     private func registerAllServices(){
         resolver.register { EpisodesCell() }

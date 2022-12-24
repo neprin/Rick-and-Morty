@@ -10,18 +10,17 @@ import Combine
 import Resolver
 
 class CharactersViewController: UIViewController {
-   
-    private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>!
-    private var cancellables = Set<AnyCancellable>()
-    private var isLoadingPage = false
     
     let charactersSubject = CurrentValueSubject<[RickAndMortyCharacter], Never>([])
     let isFirstLoadingPageSubject = CurrentValueSubject<Bool, Never>(true)
     var currentPage = 1
     var canLoadMorePages = true
     @LazyInjected private var networkService: NetworkService
-
+    
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, RickAndMortyCharacter>!
+    private var cancellables = Set<AnyCancellable>()
+    private var isLoadingPage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

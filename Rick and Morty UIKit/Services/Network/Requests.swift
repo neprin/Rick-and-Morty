@@ -9,10 +9,10 @@ import UIKit
 
 class CharactersRequest: NetworkRequestProtocol {
     typealias ResponseType = BasicAPIResponse<RickAndMortyCharacter>
-
+    
     let endpoint: Schema
     let method: HTTPMethod = .GET
-
+    
     init(page: Int) {
         endpoint = .getCharacters(page: page)
     }
@@ -20,10 +20,10 @@ class CharactersRequest: NetworkRequestProtocol {
 
 class EpisodesRequest: NetworkRequestProtocol {
     typealias ResponseType = BasicAPIResponse<EpisodeResult>
-
+    
     let endpoint: Schema
     let method: HTTPMethod = .GET
-
+    
     init(name: String, page: Int) {
         endpoint = .getEpisodes(for: name, page: page)
     }

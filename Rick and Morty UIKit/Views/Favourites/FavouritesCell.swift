@@ -41,12 +41,12 @@ class FavouritesCell: UICollectionViewCell {
         setupImageView()
     }
     
-    func set(photo: Result) {
-        let photoUrl = photo.image
-        let photoURL = photoUrl
-        let url = URL(string: photoURL)
-        favouriteImageView.sd_setImage(with: url, completed: nil)
-    }
+//    func set(photo: Result) {
+//        let photoUrl = photo.image
+//        let photoURL = photoUrl
+//        let url = URL(string: photoURL)
+//        favouriteImageView.sd_setImage(with: url, completed: nil)
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

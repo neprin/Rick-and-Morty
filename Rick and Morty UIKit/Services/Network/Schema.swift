@@ -49,6 +49,4 @@ extension Schema {
                 URLQueryItem(name: "name", value: name)
             ]
         )}
-    
-
 }

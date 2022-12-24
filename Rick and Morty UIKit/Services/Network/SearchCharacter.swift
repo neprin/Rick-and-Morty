@@ -31,12 +31,12 @@ class SearchCharacter {
         components.scheme = "https"
         components.host = "rickandmortyapi.com"
         components.path = "/api/character/"
-        components.queryItems = parameters.map({ URLQueryItem(name: $0, value: $1) })
+        components.queryItems = parameters.map({ URLQueryItem(name: $0, value: $1) }) //магия
         return components.url!
     }
     
     private func createDataTask(from request: URLRequest, completion: @escaping (Data?, Error?) -> Void) -> URLSessionDataTask {
-        return URLSession.shared.dataTask(with: request) { (data, response, error) in
+        return URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 completion(data, error)
             }

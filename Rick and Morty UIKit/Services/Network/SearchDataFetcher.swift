@@ -11,6 +11,8 @@ class SearchDataFetcher {
     
     var searchCharacter = SearchCharacter()
     
+    // декодируем полученные JSON данные в конкретную модель данных
+    
     func fetchCharacters(searchTerm: String, completion: @escaping (GetCharacter?) -> ()) {
         searchCharacter.request(searchTerm: searchTerm) { (data, error) in
             if let error = error {
